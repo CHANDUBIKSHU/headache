@@ -1,8 +1,8 @@
-FROM maven:3.8.1-openjdk-17 As build
+FROM maven:3.8.1-eclipse-temurin-17 As build
 COPY . .
 RUN mvn clean package -DskipTests
 
-FROM openjdk:17.0.1-jdk-slim
-COPY --from=build /target/chandu-0.0.1-SNAPSHOT.jar chandubikshu.jar  
+FROM eclipse-temurin:117-alpine
+COPY --from=build /target/*.jar chandubikshu.jar  
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","chandubikshu.jar"]
