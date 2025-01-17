@@ -1,8 +1,10 @@
 FROM maven:3-eclipse-temurin-17 As build
+WORKDIR /app
 COPY . .
 RUN mvn clean package -DskipTests
 
 FROM eclipse-temurin:17-alpine
-COPY --from=build /target/*.jar chandubikshu.jar  
+WORKDIR /app
+COPY --from=build /target/*.jar app.jar  
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","chandubikshu.jar"]
+ENTRYPOINT ["java","-jar","app.jar"]
