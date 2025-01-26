@@ -9,7 +9,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/chandu
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-service:3306/chandu
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: chandu@2005
     depends_on:
